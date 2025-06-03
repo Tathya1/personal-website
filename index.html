@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tathya Vaghasia | Developer & Sports Enthusiast</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-bg: #f5f6fa;
+      --color-primary: #0a2540;
+      --color-secondary: #00bfa6;
+      --color-accent: #ff6e6e;
+      --color-text: #2e2e3e;
+      --color-light: #ffffff;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.6;
+    }
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255,255,255,0.8);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .navbar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--color-primary);
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+    .nav-links li a {
+      text-decoration: none;
+      color: var(--color-text);
+      font-weight: 600;
+      position: relative;
+    }
+    .nav-links li a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background: var(--color-secondary);
+      left: 0;
+      bottom: -4px;
+      transition: width 0.3s;
+    }
+    .nav-links li a:hover::after {
+      width: 100%;
+    }
+    .hero {
+      background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+      color: var(--color-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      padding: 0 2rem;
+    }
+    .hero-content h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .hero-content h1 span {
+      color: var(--color-accent);
+    }
+    .hero-content p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    section {
+      padding: 6rem 2rem;
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .section-header h2 {
+      font-size: 2.5rem;
+      color: var(--color-primary);
+      position: relative;
+      display: inline-block;
+    }
+    .section-header h2::after {
+      content: '';
+      width: 50px;
+      height: 4px;
+      background: var(--color-secondary);
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -10px;
+      border-radius: 2px;
+    }
+    /* About */
+    #about .about-container {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    #about .about-container p {
+      text-align: justify;
+    }
+    /* Education */
+    #education .edu-list {
+      max-width: 800px;
+      margin: 0 auto;
+      display: grid;
+      gap: 1.5rem;
+    }
+    #education .edu-item {
+      background: var(--color-light);
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      transition: transform 0.3s;
+    }
+    #education .edu-item:hover {
+      transform: translateY(-4px);
+    }
+    #education .edu-item h3 {
+      color: var(--color-secondary);
+      margin-bottom: 0.5rem;
+    }
+    /* Achievements */
+    #achievements .ach-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    #achievements .ach-item {
+      background: var(--color-light);
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    }
+    /* Skills */
+    #skills .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .skill-card {
+      background: var(--color-light);
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    }
+    .skill-card h3 {
+      color: var(--color-secondary);
+      margin-bottom: 1rem;
+    }
+    .progress-bar {
+      background: rgba(0,0,0,0.1);
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+    }
+    .progress {
+      height: 12px;
+      background: var(--color-accent);
+      width: 0;
+      border-radius: 20px;
+      transition: width 1s ease-in-out;
+    }
+    /* Projects */
+    #projects .project-card {
+      background: var(--color-light);
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      margin-bottom: 2rem;
+      transition: transform 0.3s;
+    }
+    #projects .project-card:hover {
+      transform: translateY(-4px);
+    }
+    #projects .project-card h3 {
+      color: var(--color-primary);
+      margin-bottom: 0.5rem;
+    }
+    /* Contact */
+    #contact .contact-info {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      text-align: center;
+    }
+    #contact a {
+      color: var(--color-secondary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    /* Footer */
+    .footer {
+      background: var(--color-primary);
+      color: var(--color-light);
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+    .footer p {
+      margin: 0;
+      font-size: 0.9rem;
+    }
+    @media (min-width: 768px) {
+      .hero-content h1 {
+        font-size: 4rem;
+      }
+      .hero-content p {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="logo">Tathya Vaghasia</div>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#achievements">Achievements</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="hero-content">
+      <h1>Hi, I'm <span>Tathya Vaghasia</span></h1>
+      <p>Developer, Sports Enthusiast, and Fiction Lover. Crafting solutions and chasing dreams on and off the field.</p>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <div class="section-header">
+      <h2>About Me</h2>
+    </div>
+    <div class="about-container">
+      <p>Welcome to my digital space! I'm <strong>Tathya Jignesh Vaghasia</strong>, pursuing my B.Tech in Computer Science and Engineering at IIIT-H. With a keen interest in cutting-edge technology, I constantly explore new frameworks, algorithms, and tools to build impactful solutions.</p>
+      <p>Away from code, you'll find me on the sports field—whether it's cricket or Ultimate Frisbee—embracing teamwork, strategy, and a bit of healthy competition. These experiences sharpen my leadership, adaptability, and drive to excel.</p>
+      <p>When not coding or playing sports, I dive into fiction—exploring worlds beyond the ordinary. Reading ignites my creativity, broadens my perspective, and fuels my problem-solving instincts.</p>
+    </div>
+  </section>
+
+  <!-- Education Section -->
+  <section id="education" style="background: var(--color-light)">
+    <div class="section-header">
+      <h2>Education</h2>
+    </div>
+    <div class="edu-list">
+      <div class="edu-item">
+        <h3>IIIT Hyderabad</h3>
+        <p>B.Tech in Computer Science and Engineering (2023 – Present) | CGPA: 9.05</p>
+        <p>Key Courses: Data Structures & Algorithms, Operating Systems & Networking, Database Systems, Algorithm Analysis, Probability & Statistics, Software Design</p>
+      </div>
+      <div class="edu-item">
+        <h3>Sanskar Tirth Gyanpeeth School, Surat</h3>
+        <p>Higher Secondary (Class XI–XII, CBSE – 96%) (2021 – 2023)</p>
+      </div>
+      <div class="edu-item">
+        <h3>METAS Adventist School, Surat</h3>
+        <p>Class X, ICSE – 95% (2021)</p>
+      </div>
+      <div class="edu-item">
+        <h3>Hobby Center for Nursery</h3>
+        <p>Early learning with focus on curiosity and discovery</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Achievements Section -->
+  <section id="achievements">
+    <div class="section-header">
+      <h2>Achievements</h2>
+    </div>
+    <div class="ach-grid">
+      <div class="ach-item">
+        <p><strong>JEE Advanced:</strong> All India Rank 2248</p>
+      </div>
+      <div class="ach-item">
+        <p><strong>JEE Mains:</strong> All India Rank 515 (Top 0.04%)</p>
+      </div>
+      <div class="ach-item">
+        <p>First Rank in School (1st–10th)</p>
+      </div>
+      <div class="ach-item">
+        <p><strong>Boards:</strong> 96% in 12th | 95% in 10th</p>
+      </div>
+      <div class="ach-item">
+        <p>Gold Medal in 100m (School); Bronze (District)</p>
+      </div>
+      <div class="ach-item">
+        <p>Swimming Medals (School & District)</p>
+      </div>
+      <div class="ach-item">
+        <p>Selected for State Level Spell Bee & Olympiads</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" style="background: var(--color-light)">
+    <div class="section-header">
+      <h2>Skills</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h3>Technical</h3>
+        <p>Python, MySQL, Java, C, C++, JavaScript, HTML, CSS, Shell Script</p>
+        <div class="progress-bar"><div class="progress" style="width: 90%;"></div></div>
+        <p>Flask, OpenCV, MERN Stack, MongoDB Atlas</p>
+        <div class="progress-bar"><div class="progress" style="width: 85%;"></div></div>
+        <p>Git, Linux, VS Code</p>
+        <div class="progress-bar"><div class="progress" style="width: 80%;"></div></div>
+      </div>
+      <div class="skill-card">
+        <h3>Athletics & Sports</h3>
+        <p>Cricket, Ultimate Frisbee, Running, Swimming</p>
+        <div class="progress-bar"><div class="progress" style="width: 100%;"></div></div>
+        <p>Team Coordination & Leadership</p>
+        <div class="progress-bar"><div class="progress" style="width: 95%;"></div></div>
+      </div>
+      <div class="skill-card">
+        <h3>Other</h3>
+        <p>Culinary Arts: Creative recipe development</p>
+        <div class="progress-bar"><div class="progress" style="width: 75%;"></div></div>
+        <p>Bluffing & Strategy: Logical reasoning</p>
+        <div class="progress-bar"><div class="progress" style="width: 80%;"></div></div>
+        <p>Fiction Enthusiast: Critical thinking</p>
+        <div class="progress-bar"><div class="progress" style="width: 85%;"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects">
+    <div class="section-header">
+      <h2>Projects & Experience</h2>
+    </div>
+    <div class="container">
+      <div class="project-card">
+        <h3>Distributed Network File System</h3>
+        <p><strong>Technologies:</strong> C++, TCP Sockets, Multithreading</p>
+        <p>Designed a distributed file system across multiple machines with server registration, directory listing, metadata fetch, inter-server file copy, and LRU caching for optimized read/write supporting >1GB files and 10+ concurrent users.</p>
+      </div>
+      <div class="project-card">
+        <h3>Linux Shell</h3>
+        <p><strong>Technologies:</strong> C, POSIX Signals, Concurrency</p>
+        <p>Developed an interactive bash-like shell with semicolon-separated commands, I/O redirection, auto-completion, piping, process management, and signal handling.</p>
+      </div>
+      <div class="project-card">
+        <h3>Andromeda – Photo Slideshow Web App</h3>
+        <p><strong>Technologies:</strong> Python, Flask, OpenCV, MySQL, CockroachDB</p>
+        <p>Built a full-stack application converting 100+ image sequences into videos with custom music, transitions, and real-time preview; generated videos of 10–500 seconds with synced audio and varied frame durations.</p>
+      </div>
+      <div class="project-card">
+        <h3>Hospital Management System</h3>
+        <p><strong>Technologies:</strong> Python, MySQL, ER Modeling</p>
+        <p>Designed and implemented a hospital database with 10+ entities; normalized to 3NF, ensuring integrity across 1000+ records; built secure, role-based access and optimized query performance.</p>
+      </div>
+      <div class="project-card">
+        <h3>Buy-Sell @ IIITH</h3>
+        <p><strong>Technologies:</strong> MERN Stack, JWT, React, Tailwind CSS</p>
+        <p>Developed an e-commerce portal with JWT authentication, hashed passwords, protected user routes, search, category filters, cart functionality, and OTP-based ordering; managed 1000+ product records with an intuitive UI.</p>
+      </div>
+      <div class="project-card">
+        <h3>XV6 System Calls & Scheduling</h3>
+        <p><strong>Technologies:</strong> C, XV6, Context Switching</p>
+        <p>Added <code>getSysCount</code> syscall; implemented <code>sigalarm</code> and <code>sigreturn</code> for user-level interrupts; developed preemptive Lottery & MLFQ schedulers, improving CPU throughput by 1.5× vs. Round-Robin.</p>
+      </div>
+      <div class="project-card">
+        <h3>Virtual Labs at IIIT Hyderabad (2025 – Present)</h3>
+        <p>Established an agentic pipeline using agentic frameworks to streamline code generation, enabling automated experiment creation for virtual labs.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" style="background: var(--color-light)">
+    <div class="section-header">
+      <h2>Contact</h2>
+    </div>
+    <div class="contact-info">
+      <p>Email: <a href="mailto:tathya.vaghasia@students.iiit.ac.in">tathya.vaghasia@students.iiit.ac.in</a></p>
+      <p>Phone: <a href="tel:+917573022818">+91-7573022818</a></p>
+      <p>LinkedIn: <a href="https://www.linkedin.com/in/tathya-vaghasia-1778b6286/" target="_blank">linkedin.com/in/tathya-vaghasia</a></p>
+      <p>GitHub: <a href="https://github.com/Tathya1" target="_blank">github.com/Tathya1</a></p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2025 Tathya Vaghasia. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    // Animate progress bars on scroll
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.progress').forEach(bar => {
+            bar.style.width = bar.getAttribute('style').split('width: ')[1];
+          });
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('#skills .skills-grid').forEach(section => {
+      observer.observe(section);
+    });
+  </script>
+</body>
+</html>
